@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_bar_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search" />
+
+    <item
+        android:id="@+id/bottom_bar_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/selections" />
+
+    <item
+        android:id="@+id/bottom_bar_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_people_24"
+        android:title="@string/profile" />
+</menu>
