@@ -7,12 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da5eb3c4-6cc7-40e1-bbda-638d1f4057b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/profile_activity.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/selected_house_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/selected_houses_activity.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_add_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/house_activity.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/house_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/house_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/profile_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/profile_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/selected_house_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/selected_house_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -235,15 +235,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619521954741" />
-    <state x="511" y="219" key="AndroidCreateResourceFileDialog" timestamp="1619539989230">
+    <state x="511" y="219" key="AndroidCreateResourceFileDialog" timestamp="1619540282458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="511" y="219" key="AndroidCreateResourceFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1619539989230" />
+    <state x="511" y="219" key="AndroidCreateResourceFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1619540282458" />
     <state x="1020" y="278" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619521991601" />
-    <state x="617" y="206" key="AndroidCreateXmlResourceDialog" timestamp="1619539646451">
+    <state x="617" y="206" key="AndroidCreateXmlResourceDialog" timestamp="1619540440577">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="617" y="206" key="AndroidCreateXmlResourceDialog/0.0.1536.824@0.0.1536.824" timestamp="1619539646451" />
+    <state x="617" y="206" key="AndroidCreateXmlResourceDialog/0.0.1536.824@0.0.1536.824" timestamp="1619540440577" />
     <state width="1876" height="260" key="GridCell.Tab.0.bottom" timestamp="1619526025624">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -268,5 +268,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="584" y="190" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1619537694629" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1619541769144">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1619541769144" />
   </component>
 </project>
