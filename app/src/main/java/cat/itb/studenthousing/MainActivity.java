@@ -1,15 +1,19 @@
 package cat.itb.studenthousing;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -22,7 +26,7 @@ import cat.itb.studenthousing.models.Student;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    BottomNavigationView bottomNavigationView;
     private DatabaseReference userDb, ownerDb, houseDb, houseApplicationDb;
 
     @Override
@@ -47,6 +51,31 @@ public class MainActivity extends AppCompatActivity {
         //insertOwners(owner);
         //insertHouseApplication(houseApplication);
         //insertHouses(house);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation_main);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.bottom_bar_search:
+                        Intent toMainIntent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(toMainIntent);
+                        break;
+                    case R.id.bottom_bar_home:
+                        Intent toHousesIntent = new Intent(MainActivity.this, SelectedHouses.class);
+                        startActivity(toHousesIntent);
+                        break;
+                    case R.id.bottom_bar_profile:
+                        Intent toProfileIntent = new Intent(MainActivity.this, StudentProfile.class);
+                        startActivity(toProfileIntent);
+                        break;
+
+                }
+                return false;
+            }
+        });
 
 
     }
