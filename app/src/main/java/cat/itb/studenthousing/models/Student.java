@@ -7,6 +7,7 @@ public class Student implements Serializable {
 
     String studentId;
     String username;
+    String email;
     String name;
     String password;
     int socialSecurityNumber;
@@ -16,7 +17,15 @@ public class Student implements Serializable {
 
     }
 
-    public Student(String username, String name, String password, int socialSecurityNumber, int mobile) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Student(String username, String name, String email, String password, int socialSecurityNumber, int mobile) {
         this.username = username;
         this.name = name;
         this.password = password;
