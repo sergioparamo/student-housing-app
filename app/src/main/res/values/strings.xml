@@ -60,6 +60,7 @@
     <string name="addhouse">Add house</string>
 
     <string name="ciutatvella">Add house</string>
+    <string name="password">Password</string>
 
     <string-array name="bcnareas">
         <item>"Ciutat Vella"</item>
