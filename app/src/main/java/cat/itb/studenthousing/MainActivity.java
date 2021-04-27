@@ -1,7 +1,11 @@
 package cat.itb.studenthousing;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
 
         userDb = FirebaseDatabase.getInstance().getReference("user");
         ownerDb = FirebaseDatabase.getInstance().getReference("owner");
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         options = new FirebaseRecyclerOptions.Builder<Owner>()
                 .setQuery(ownerDb, Owner.class).build();
     }
+
     //1 5 6 6
     public void insertHouses(House house) {
         FirebaseRecyclerOptions<HouseApplication> options;
