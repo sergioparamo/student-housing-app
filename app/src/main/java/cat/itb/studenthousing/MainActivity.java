@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         userDb = FirebaseDatabase.getInstance().getReference("user");
@@ -31,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
         houseDb = FirebaseDatabase.getInstance().getReference("house");
         houseApplicationDb = FirebaseDatabase.getInstance().getReference("house-application");
 
-        Student student = new Student("sergioparamo", "Sergio Paramo", "123", 12345, 666777888);
+        //tudent student = new Student("sergioparamo", "Sergio Paramo", "123", 12345, 666777888);
         Owner owner = new Owner("manologarcia", "Manolo Garcia", "123", "12345", "B–76365789");
         HouseApplication houseApplication = new HouseApplication("123", "34", "-MZE4Q6tPjbgfOBP7p7g", "pending");
-        House house = new House("Beautiful duplex", "Beautiful duplex with everything", "Aiguablava 121", "Oven", R.drawable.resi1_2, 500, 350);
+        //House house = new House("Beautiful duplex", "Beautiful duplex with everything", "Aiguablava 121", "Oven", R.drawable.resi1_2, 500, 350);
 
 
-        insertStudents(student);
-        insertOwners(owner);
-        insertHouseApplication(houseApplication);
-        insertHouses(house);
+        //insertStudents(student);
+        //insertOwners(owner);
+        //insertHouseApplication(houseApplication);
+        //insertHouses(house);
 
 
     }
