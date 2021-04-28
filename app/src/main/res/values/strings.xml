@@ -76,4 +76,9 @@
         <item>"Sant Martí"</item>
     </string-array>
 
+    <string name="facebook_application_id" translatable="false">290663232598844</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb290663232598844</string>
+    <string name="changeemail">Change email</string>
+
+
 </resources>

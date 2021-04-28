@@ -151,6 +151,24 @@
             />
 
         <Button
+            android:onClick="changeEmail"
+            android:id="@+id/changeEmail"
+            style="@style/fontItemStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:paddingTop="2dp"
+            android:text="@string/changeemail"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalLine"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="RtlCompat" />
+
+        <Button
+            android:onClick="changePassword"
             android:id="@+id/changePasswordId"
             style="@style/fontItemStyle"
             android:layout_width="match_parent"
@@ -162,11 +180,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/horizontalLine"
+            app:layout_constraintTop_toBottomOf="@id/changeEmail"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="RtlCompat" />
 
         <Button
+            android:onClick="logOut"
             android:id="@+id/logOutId"
             style="@style/fontItemStyle"
             android:layout_width="match_parent"
@@ -183,6 +202,7 @@
             tools:ignore="RtlCompat" />
 
         <Button
+            android:onClick="deleteAccount"
             android:id="@+id/deleteAccountId"
             style="@style/fontItemStyle"
             android:layout_width="match_parent"

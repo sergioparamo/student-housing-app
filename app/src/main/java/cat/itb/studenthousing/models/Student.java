@@ -6,14 +6,11 @@ import java.io.Serializable;
 public class Student implements Serializable {
 
     String studentId;
-    String username;
     String email;
     String name;
-    String password;
-    int socialSecurityNumber;
-    int mobile;
+    String phoneNumber;
 
-    public Student(){
+    public Student() {
 
     }
 
@@ -25,12 +22,11 @@ public class Student implements Serializable {
         this.email = email;
     }
 
-    public Student(String username, String name, String email, String password, int socialSecurityNumber, int mobile) {
-        this.username = username;
+    public Student(String studentId, String email, String name, String phoneNumber) {
+        this.studentId = studentId;
+        this.email = email;
         this.name = name;
-        this.password = password;
-        this.socialSecurityNumber = socialSecurityNumber;
-        this.mobile = mobile;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getStudentId() {
@@ -41,14 +37,6 @@ public class Student implements Serializable {
         this.studentId = studentId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getName() {
         return name;
     }
@@ -57,27 +45,11 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getSocialSecurityNumber() {
-        return socialSecurityNumber;
-    }
-
-    public void setSocialSecurityNumber(int socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
-    }
-
-    public int getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(int mobile) {
-        this.mobile = mobile;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
