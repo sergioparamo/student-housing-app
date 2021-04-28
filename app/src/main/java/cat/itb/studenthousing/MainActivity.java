@@ -1,21 +1,18 @@
 package cat.itb.studenthousing;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -32,11 +29,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
 
-        userDb = FirebaseDatabase.getInstance().getReference("user");
+        /*userDb = FirebaseDatabase.getInstance().getReference("user");
         ownerDb = FirebaseDatabase.getInstance().getReference("owner");
         houseDb = FirebaseDatabase.getInstance().getReference("house");
         houseApplicationDb = FirebaseDatabase.getInstance().getReference("house-application");
@@ -45,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Owner owner = new Owner("manologarcia", "Manolo Garcia", "123", "12345", "B–76365789");
         HouseApplication houseApplication = new HouseApplication("123", "34", "-MZE4Q6tPjbgfOBP7p7g", "pending");
         //House house = new House("Beautiful duplex", "Beautiful duplex with everything", "Aiguablava 121", "Oven", R.drawable.resi1_2, 500, 350);
-
+*/
 
         //insertStudents(student);
         //insertOwners(owner);
@@ -54,29 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_main);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
+        NavController navController = navHostFragment.getNavController();
 
-                    case R.id.bottom_bar_search:
-                        Intent toMainIntent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(toMainIntent);
-                        break;
-                    case R.id.bottom_bar_home:
-                        Intent toHousesIntent = new Intent(MainActivity.this, SelectedHouses.class);
-                        startActivity(toHousesIntent);
-                        break;
-                    case R.id.bottom_bar_profile:
-                        Intent toProfileIntent = new Intent(MainActivity.this, StudentProfile.class);
-                        startActivity(toProfileIntent);
-                        break;
-
-                }
-                return false;
-            }
-        });
-
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
     }
 

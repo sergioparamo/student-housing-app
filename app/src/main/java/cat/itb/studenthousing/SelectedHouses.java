@@ -1,49 +1,26 @@
 package cat.itb.studenthousing;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class SelectedHouses extends AppCompatActivity {
+public class SelectedHouses extends Fragment {
 
     BottomNavigationView bottomNavigationView;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.selected_houses_fragment, container, false);
 
-        setContentView(R.layout.selected_houses_activity);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation_selected_houses);
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-
-                    case R.id.bottom_bar_search:
-                        Intent toMainIntent = new Intent(SelectedHouses.this, MainActivity.class);
-                        startActivity(toMainIntent);
-                        break;
-                    case R.id.bottom_bar_home:
-                        Intent toHousesIntent = new Intent(SelectedHouses.this, SelectedHouses.class);
-                        startActivity(toHousesIntent);
-                        break;
-                    case R.id.bottom_bar_profile:
-                        Intent toProfileIntent = new Intent(SelectedHouses.this, StudentProfile.class);
-                        startActivity(toProfileIntent);
-                        break;
-
-                }
-                return false;
-            }
-        });
-
+        return v;
     }
 }

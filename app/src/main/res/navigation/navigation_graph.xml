@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/landingPageFragment">
+    <fragment
+        android:id="@+id/landingPageFragment"
+        android:name="cat.itb.studenthousing.LandingPageFragment"
+        android:label="LandingPageFragment" >
+        <action
+            android:id="@+id/action_landingPageFragment_to_selectedHouses"
+            app:destination="@id/selectedHouses" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_studentProfile"
+            app:destination="@id/studentProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectedHouses"
+        android:name="cat.itb.studenthousing.SelectedHouses"
+        android:label="SelectedHouses" >
+        <action
+            android:id="@+id/action_selectedHouses_to_studentProfile"
+            app:destination="@id/studentProfile" />
+        <action
+            android:id="@+id/action_selectedHouses_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentProfile"
+        android:name="cat.itb.studenthousing.StudentProfile"
+        android:label="StudentProfile" >
+        <action
+            android:id="@+id/action_studentProfile_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+        <action
+            android:id="@+id/action_studentProfile_to_selectedHouses"
+            app:destination="@id/selectedHouses" />
+    </fragment>
+</navigation>
