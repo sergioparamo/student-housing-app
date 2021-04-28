@@ -14,16 +14,18 @@
         app:navGraph="@navigation/navigation_graph"
         app:defaultNavHost="true" />
 
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_main"
+        style="@style/fontStyle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/primary"
-        app:itemIconTint="@drawable/bottom_navigation_selector"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:itemIconTint="@drawable/bottom_nav_item_color"
+        app:itemTextColor="@drawable/bottom_nav_item_color"
+        app:menu="@menu/bottom_navigation_menu"
+
+        />
 
 </RelativeLayout>
 
