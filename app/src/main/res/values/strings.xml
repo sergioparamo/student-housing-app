@@ -59,6 +59,8 @@
 
     <string name="addhouse">Add house</string>
 
+    <string name="addhousetolist">Add to list</string>
+
     <string name="ciutatvella">Add house</string>
     <string name="password">Password</string>
     <string name="house_card">House Information</string>
@@ -79,6 +81,7 @@
     <string name="facebook_application_id" translatable="false">290663232598844</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb290663232598844</string>
     <string name="changeemail">Change email</string>
+    <string name="h">Problem</string>
 
 
 </resources>

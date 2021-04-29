@@ -52,4 +52,14 @@ public class HouseApplication implements Serializable {
         this.studentId = studentId;
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "HouseApplication{" +
+                "applicationId='" + applicationId + '\'' +
+                ", houseId='" + houseId + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }

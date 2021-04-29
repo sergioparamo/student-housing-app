@@ -1,5 +1,9 @@
 package cat.itb.studenthousing.models;
 
+import android.os.Parcelable;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
@@ -14,19 +18,45 @@ public class House implements Serializable {
     String address;
     String area;
     String facilities;
-    int picture;
     double deposit;
     double rent;
 
     public House() {
     }
 
-    public int getPictures() {
-        return picture;
+    public House(String houseId, String title, String ownerId, String description, String address, String area, String facilities, double deposit, double rent) {
+        this.houseId = houseId;
+        this.title = title;
+        this.ownerId = ownerId;
+        this.description = description;
+        this.address = address;
+        this.area = area;
+        this.facilities = facilities;
+        this.deposit = deposit;
+        this.rent = rent;
     }
 
-    public void setPictures(int pictures) {
-        this.picture = pictures;
+    public String getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(String facilities) {
+        this.facilities = facilities;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "houseId='" + houseId + '\'' +
+                ", title='" + title + '\'' +
+                ", ownerId='" + ownerId + '\'' +
+                ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
+                ", area='" + area + '\'' +
+                ", facilities=" + facilities +
+                ", deposit=" + deposit +
+                ", rent=" + rent +
+                '}';
     }
 
     public String getArea() {
@@ -35,15 +65,6 @@ public class House implements Serializable {
 
     public void setArea(String area) {
         this.area = area;
-    }
-
-    public House(String title, String description, String address, String area, String  facilities, int  pictures , double deposit, double rent) {
-        this.title = title;
-        this.description = description;
-        this.address = address;
-        this.facilities = facilities;
-        this.deposit = deposit;
-        this.rent = rent;
     }
 
     public String getHouseId() {
@@ -86,13 +107,6 @@ public class House implements Serializable {
         this.address = address;
     }
 
-    public  String getFacilities() {
-        return facilities;
-    }
-
-    public void setFacilities( String  facilities) {
-        this.facilities = facilities;
-    }
 
     public double getDeposit() {
         return deposit;

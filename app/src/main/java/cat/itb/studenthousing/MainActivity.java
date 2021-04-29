@@ -18,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
     List<AuthUI.IdpConfig> provider = Arrays.asList(
             new AuthUI.IdpConfig.GoogleBuilder().build(),
-            new AuthUI.IdpConfig.FacebookBuilder().build(),
             new AuthUI.IdpConfig.EmailBuilder().build(),
-            new AuthUI.IdpConfig.PhoneBuilder().build()
+            new AuthUI.IdpConfig.PhoneBuilder().build(),
+            new AuthUI.IdpConfig.AnonymousBuilder().build()
+
     );
 
 
@@ -72,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (user != null) {
-                    //Toast.makeText(MainActivity.this, "Iniciaste sesión!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Iniciaste sesión!", Toast.LENGTH_LONG).show();
 
-                    Student student = new Student(user.getUid(),user.getEmail(),user.getDisplayName(),user.getPhoneNumber());
+                    Student student = new Student(user.getUid(), user.getEmail(), user.getDisplayName(), user.getPhoneNumber());
                     insertStudents(student);
 
                     Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_LONG).show();
@@ -91,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-
         bottomNavigationView = findViewById(R.id.bottom_navigation_main);
 
         NavHostFragment navHostFragment =
@@ -104,9 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void insertStudents(Student student) {
         FirebaseRecyclerOptions<Student> options;
-        String key = userDb.push().getKey();
+        String key = student.getStudentId();
         assert key != null;
-        student.setStudentId(key);
         userDb.child(key).setValue(student);
         options = new FirebaseRecyclerOptions.Builder<Student>()
                 .setQuery(userDb, Student.class).build();
@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
+
         alert.setTitle("Delete account");
         alert.setMessage("Are you sure about this?");
 
@@ -188,17 +189,43 @@ public class MainActivity extends AppCompatActivity {
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
-                firebaseAuth.getCurrentUser().delete();
-                Toast.makeText(MainActivity.this, "Cuenta borrada! :(", Toast.LENGTH_LONG).show();
-                logOut(view);
+                try {
+
+                    Task<Void> deleteTask = firebaseAuth.getCurrentUser().delete();
+
+                    deleteTask.addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+
+                            Toast.makeText(MainActivity.this, "Your account has been deleted!", Toast.LENGTH_LONG).show();
+                            logOut(view);
+                        }
+                    });
+
+                    deleteTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, "There was an error deleting the account" + deleteTask.getResult(), Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+
+
+                } catch (NullPointerException nullPointerException) {
+                    Toast.makeText(MainActivity.this, "There was an error deleting the account", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+                Toast.makeText(MainActivity.this, "Operation cancelled", Toast.LENGTH_LONG).show();
 
             }
         });
+
 
         alert.show();
 
@@ -260,4 +287,6 @@ public class MainActivity extends AppCompatActivity {
 
         alert.show();
     }
+
+
 }
