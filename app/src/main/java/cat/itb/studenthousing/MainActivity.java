@@ -42,9 +42,9 @@ import cat.itb.studenthousing.models.Student;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    private DatabaseReference userDb, ownerDb, houseDb, houseApplicationDb;
+    public static DatabaseReference userDb, ownerDb, houseDb, houseApplicationDb;
 
-    FirebaseAuth firebaseAuth;
+    public static FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
 
     List<AuthUI.IdpConfig> provider = Arrays.asList(
@@ -74,12 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if (user != null) {
-                    Toast.makeText(MainActivity.this, "Iniciaste sesión!", Toast.LENGTH_LONG).show();
-
                     Student student = new Student(user.getUid(), user.getEmail(), user.getDisplayName(), user.getPhoneNumber());
                     insertStudents(student);
-
-                    Toast.makeText(MainActivity.this, user.getUid(), Toast.LENGTH_LONG).show();
                 } else {
                     //creamos el usuario
                     startActivity(AuthUI.getInstance()
@@ -101,7 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
+
+
     }
+
 
     public void insertStudents(Student student) {
         FirebaseRecyclerOptions<Student> options;
@@ -260,6 +259,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
     public void changeEmail(View view) {
 

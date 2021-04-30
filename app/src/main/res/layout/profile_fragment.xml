@@ -37,19 +37,21 @@
         android:layout_gravity="center"
 
 
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp">
 
 
         <TextView
-            android:id="@+id/ownerHouseListId"
+            android:id="@+id/usernameId"
             style="@style/fontItemStyle"
+            android:textSize="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:hint="Username"
             android:paddingTop="5dp"
+            android:paddingBottom="20dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -60,67 +62,58 @@
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/titleHouseListId"
+            android:id="@+id/fullNameId"
             style="@style/fontItemStyle"
+            android:textSize="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:hint="Full name"
             android:paddingTop="2dp"
+            android:paddingBottom="20dp"
             android:visibility="visible"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ownerHouseListId"
+            app:layout_constraintTop_toBottomOf="@id/usernameId"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/priceHouseListId"
+            android:id="@+id/emailId"
             style="@style/fontItemStyle"
+            android:textSize="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:hint="Email"
             android:paddingTop="2dp"
+            android:paddingBottom="20dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleHouseListId"
+            app:layout_constraintTop_toBottomOf="@id/fullNameId"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="RtlCompat" />
 
-        <TextView
-            android:id="@+id/ownerId"
-            style="@style/fontItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="left"
-            android:hint="Social Security Number"
-            android:paddingTop="2dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/priceHouseListId"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/descriptionId"
+            android:id="@+id/phoneId"
             style="@style/fontItemStyle"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:hint="Phone"
+            android:textSize="20dp"
             android:paddingTop="2dp"
+            android:paddingBottom="10dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ownerId"
+            app:layout_constraintTop_toBottomOf="@id/emailId"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="RtlCompat" />
 
@@ -136,7 +129,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionId"
+            app:layout_constraintTop_toBottomOf="@id/phoneId"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="RtlCompat" />
 

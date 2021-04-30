@@ -94,6 +94,8 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
                 Intent fromHouseToHouseCardIntent = new Intent(v.getContext(), HouseItemCard.class);
                 fromHouseToHouseCardIntent.putExtra("house", house);
+                fromHouseToHouseCardIntent.putExtra("action", "Remove from list");
+                fromHouseToHouseCardIntent.putExtra("applicationId", houseApplicationArrayList.get(position).getApplicationId());
                 v.getContext().startActivity(fromHouseToHouseCardIntent);
 
 

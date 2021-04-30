@@ -18,6 +18,7 @@
         <activity android:name=".Register" />
         <activity android:name=".views.HouseItemCard" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

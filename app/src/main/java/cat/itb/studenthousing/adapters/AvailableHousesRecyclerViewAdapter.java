@@ -46,7 +46,7 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
     @Override
     public void onBindViewHolder(@NonNull AvailableHousesRecyclerViewAdapter.ViewHolder holder, int position) {
 
-        db.collection("applications")
+     /*   db.collection("applications")
                 .whereEqualTo("houseId",houseArrayList.get(position).getHouseId())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -61,7 +61,7 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
                         }
                     }
                 });
-
+*/
         holder.ownerTextView.setText(houseArrayList.get(position).getOwnerId());
         holder.titleTextView.setText(houseArrayList.get(position).getTitle());
         holder.priceTextView.setText((int)houseArrayList.get(position).getRent() + "€/month");
@@ -72,6 +72,7 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
 
                 Intent fromHouseToHouseCardIntent = new Intent(v.getContext(), HouseItemCard.class);
                 fromHouseToHouseCardIntent.putExtra("house", houseArrayList.get(position));
+                fromHouseToHouseCardIntent.putExtra("action","Add to list");
                 v.getContext().startActivity(fromHouseToHouseCardIntent);
 
 

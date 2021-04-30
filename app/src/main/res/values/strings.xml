@@ -65,19 +65,6 @@
     <string name="password">Password</string>
     <string name="house_card">House Information</string>
 
-    <string-array name="bcnareas">
-        <item>"Ciutat Vella"</item>
-        <item>Eixample</item>
-        <item>"Sants-Montjuïc"</item>
-        <item>"Les Corts"</item>
-        <item>"Sarrià-Sant Gervasi"</item>
-        <item>"Gràcia"</item>
-        <item>"Horta - Guinardó"</item>
-        <item>"Nou Barris"</item>
-        <item>"Sant Andreu"</item>
-        <item>"Sant Martí"</item>
-    </string-array>
-
     <string name="facebook_application_id" translatable="false">290663232598844</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fb290663232598844</string>
     <string name="changeemail">Change email</string>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bcnareas">
+        <item>"Ciutat Vella"</item>
+        <item>Eixample</item>
+        <item>"Sants-Montjuïc"</item>
+        <item>"Les Corts"</item>
+        <item>"Sarrià-Sant Gervasi"</item>
+        <item>"Gràcia"</item>
+        <item>"Horta - Guinardó"</item>
+        <item>"Nou Barris"</item>
+        <item>"Sant Andreu"</item>
+        <item>"Sant Martí"</item>
+    </string-array>
+</resources>
