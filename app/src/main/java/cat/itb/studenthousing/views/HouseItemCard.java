@@ -49,14 +49,6 @@ public class HouseItemCard extends AppCompatActivity {
         area = findViewById(R.id.areaId);
 
 
-        /*addHouseButton = findViewById(R.id.fabtnAdd);
-
-        addHouseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
         // receiving our object
         House house = (House) getIntent().getSerializableExtra("house");
         String action = getIntent().getStringExtra("action");
@@ -90,8 +82,6 @@ public class HouseItemCard extends AppCompatActivity {
 
                     Toast.makeText(HouseItemCard.this, "Application created!", Toast.LENGTH_LONG).show();
 
-                    availableHousesRecyclerViewAdapter.notifyDataSetChanged();
-                    selectedHousesRecyclerViewAdapter.notifyDataSetChanged();
 
                     Intent fromHouseItemCardAddedToSelectedHousesIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(fromHouseItemCardAddedToSelectedHousesIntent);
@@ -102,8 +92,6 @@ public class HouseItemCard extends AppCompatActivity {
                     db.collection("applications").document(getIntent().getStringExtra("applicationId")).delete();
                     Toast.makeText(HouseItemCard.this, "Application removed!", Toast.LENGTH_LONG).show();
 
-                    availableHousesRecyclerViewAdapter.notifyDataSetChanged();
-                    selectedHousesRecyclerViewAdapter.notifyDataSetChanged();
 
                     Intent fromHouseItemCardRemovedToSelectedHousesIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(fromHouseItemCardRemovedToSelectedHousesIntent);
@@ -114,4 +102,5 @@ public class HouseItemCard extends AppCompatActivity {
         });
 
     }
+
 }

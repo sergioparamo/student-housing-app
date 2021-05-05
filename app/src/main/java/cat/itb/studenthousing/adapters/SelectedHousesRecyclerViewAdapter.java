@@ -1,7 +1,6 @@
 package cat.itb.studenthousing.adapters;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
@@ -35,11 +32,12 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
     SelectedHouses selectedHouses;
     ArrayList<HouseApplication> houseApplicationArrayList;
-    public House house;
+    ArrayList<House> houseArrayList;
 
     public SelectedHousesRecyclerViewAdapter(SelectedHouses selectedHouses, ArrayList<HouseApplication> houseApplicationArrayList) {
         this.selectedHouses = selectedHouses;
         this.houseApplicationArrayList = houseApplicationArrayList;
+        houseArrayList = new ArrayList<>();
     }
 
     @NonNull
@@ -55,6 +53,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
     public void onBindViewHolder(@NonNull SelectedHousesRecyclerViewAdapter.ViewHolder holder, int position) {
 
 
+        //Aqui hacemos un select en la tabla de casas donde la casa ID sea igual a al de la casa actual
         db.collection("houses")
                 .whereEqualTo("houseId", houseApplicationArrayList.get(position).getHouseId())
                 .get()
@@ -63,10 +62,9 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
 
                                 //recogemos la casa para pasarla al intent despues
-                                house = new House(document.getString("houseId"),
+                                House house = new House(document.getString("houseId"),
                                         document.getString("title"),
                                         document.getString("ownerId"),
                                         document.getString("description"),
@@ -78,34 +76,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                                         document.getDouble("rent"));
 
 
-                                db.collection("houses").whereEqualTo("houseId", houseApplicationArrayList.get(position).getHouseId()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-
-                                    House house = new House();
-
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        for (DocumentSnapshot querySnapshot : task.getResult()) {
-
-                                            house = new House(
-
-                                                    querySnapshot.getString("houseId"),
-                                                    querySnapshot.getString("title"),
-                                                    querySnapshot.getString("ownerId"),
-                                                    querySnapshot.getString("description"),
-                                                    querySnapshot.getString("address"),
-                                                    querySnapshot.getString("area"),
-                                                    querySnapshot.getString("facilities"),
-                                                    querySnapshot.getString("picture"),
-                                                    querySnapshot.getDouble("deposit"),
-                                                    querySnapshot.getDouble("rent")
-
-
-                                            );
-
-
-                                        }
-                                    }
-                                });
+                                houseArrayList.add(house);
 
 
                                 //method to retrieve the picture
@@ -129,8 +100,20 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
             @Override
             public void onClick(View v) {
 
+
                 Intent fromHouseToHouseCardIntent = new Intent(v.getContext(), HouseItemCard.class);
-                fromHouseToHouseCardIntent.putExtra("house", house);
+
+                House houseIntent = new House();
+
+                //Loop to iterate over
+                for (House house : houseArrayList) {
+                    if (house.getHouseId().equals(houseApplicationArrayList.get(position).getHouseId())) {
+                        houseIntent = house;
+                    }
+                }
+
+
+                fromHouseToHouseCardIntent.putExtra("house", houseIntent);
                 fromHouseToHouseCardIntent.putExtra("action", "Remove from list");
                 fromHouseToHouseCardIntent.putExtra("applicationId", houseApplicationArrayList.get(position).getApplicationId());
                 v.getContext().startActivity(fromHouseToHouseCardIntent);
