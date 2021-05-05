@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 
 import cat.itb.studenthousing.R;
 import cat.itb.studenthousing.adapters.SelectedHousesRecyclerViewAdapter;
-import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.models.HouseApplication;
 
 import static cat.itb.studenthousing.fragments.LandingPage.db;
@@ -36,7 +34,7 @@ public class SelectedHouses extends Fragment {
 
     ArrayList<HouseApplication> houseApplicationArrayList;
 
-    SelectedHousesRecyclerViewAdapter selectedHousesRecyclerViewAdapter;
+    public static SelectedHousesRecyclerViewAdapter selectedHousesRecyclerViewAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

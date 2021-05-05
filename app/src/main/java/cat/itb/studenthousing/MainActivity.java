@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -39,13 +40,18 @@ import cat.itb.studenthousing.models.HouseApplication;
 import cat.itb.studenthousing.models.Owner;
 import cat.itb.studenthousing.models.Student;
 
+import static cat.itb.studenthousing.fragments.LandingPage.availableHousesRecyclerViewAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    public static DatabaseReference userDb, ownerDb, houseDb, houseApplicationDb;
 
+    //this var will store all the houses that the user has already applied for
+    public static List<String> housesId;
+
+    public static ArrayList<House> houseArrayList;
     public static FirebaseAuth firebaseAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
+    public static FirebaseAuth.AuthStateListener mAuthListener;
 
     List<AuthUI.IdpConfig> provider = Arrays.asList(
             new AuthUI.IdpConfig.GoogleBuilder().build(),
@@ -61,10 +67,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userDb = FirebaseDatabase.getInstance().getReference("user");
-        //ownerDb = FirebaseDatabase.getInstance().getReference("owner");
-        //houseDb = FirebaseDatabase.getInstance().getReference("house");
-        //houseApplicationDb = FirebaseDatabase.getInstance().getReference("house-application");
+        housesId = new ArrayList<>();
+        houseArrayList = new ArrayList<>();
 
         firebaseAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -73,17 +77,12 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-                if (user != null) {
-                    Student student = new Student(user.getUid(), user.getEmail(), user.getDisplayName(), user.getPhoneNumber());
-                    insertStudents(student);
-                } else {
-                    //creamos el usuario
+                if (user == null) {
                     startActivity(AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setAvailableProviders(provider)
                             .setIsSmartLockEnabled(false)
                             .build());
-
                 }
             }
         };
@@ -98,65 +97,15 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
 
-
     }
 
-
-    public void insertStudents(Student student) {
-        FirebaseRecyclerOptions<Student> options;
-        String key = student.getStudentId();
-        assert key != null;
-        userDb.child(key).setValue(student);
-        options = new FirebaseRecyclerOptions.Builder<Student>()
-                .setQuery(userDb, Student.class).build();
-
-    }
-
-    public void insertOwners(Owner owner) {
-        FirebaseRecyclerOptions<Owner> options;
-        String key = ownerDb.push().getKey();
-        assert key != null;
-        owner.setOwnerId(key);
-        ownerDb.child(key).setValue(owner);
-        options = new FirebaseRecyclerOptions.Builder<Owner>()
-                .setQuery(ownerDb, Owner.class).build();
-    }
-
-    //1 5 6 6
-    public void insertHouses(House house) {
-        FirebaseRecyclerOptions<HouseApplication> options;
-        String key = houseApplicationDb.push().getKey();
-        assert key != null;
-        house.setHouseId(key);
-        house.setOwnerId(ownerDb.getKey());
-        houseDb.child(key).setValue(house);
-        options = new FirebaseRecyclerOptions.Builder<HouseApplication>()
-                .setQuery(ownerDb, HouseApplication.class).build();
-
-
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child(key);
-
-    }
-
-
-    public void insertHouseApplication(HouseApplication houseApplication) {
-        FirebaseRecyclerOptions<HouseApplication> options;
-        String key = houseApplicationDb.push().getKey();
-        assert key != null;
-        houseApplication.setApplicationId(key);
-        houseApplication.setHouseId(houseDb.getKey());
-        houseApplication.setStudentId(userDb.getKey());
-        houseApplicationDb.child(key).setValue(houseApplication);
-        options = new FirebaseRecyclerOptions.Builder<HouseApplication>()
-                .setQuery(ownerDb, HouseApplication.class).build();
-
-    }
 
     //asi validamos cuando iniciamos sesion que se quede logeado el user
     @Override
     public void onResume() {
         super.onResume();
         firebaseAuth.addAuthStateListener(mAuthListener);
+
     }
 
     @Override
@@ -259,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     public void changeEmail(View view) {

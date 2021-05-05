@@ -1,27 +1,28 @@
 package cat.itb.studenthousing.adapters;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import cat.itb.studenthousing.R;
-import cat.itb.studenthousing.fragments.LandingPage;
 import cat.itb.studenthousing.fragments.SelectedHouses;
 import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.models.HouseApplication;
@@ -72,9 +73,43 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                                         document.getString("address"),
                                         document.getString("area"),
                                         document.getString("facilities"),
+                                        document.getString("picture"),
                                         document.getDouble("deposit"),
                                         document.getDouble("rent"));
 
+
+                                db.collection("houses").whereEqualTo("houseId", houseApplicationArrayList.get(position).getHouseId()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                                    House house = new House();
+
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        for (DocumentSnapshot querySnapshot : task.getResult()) {
+
+                                            house = new House(
+
+                                                    querySnapshot.getString("houseId"),
+                                                    querySnapshot.getString("title"),
+                                                    querySnapshot.getString("ownerId"),
+                                                    querySnapshot.getString("description"),
+                                                    querySnapshot.getString("address"),
+                                                    querySnapshot.getString("area"),
+                                                    querySnapshot.getString("facilities"),
+                                                    querySnapshot.getString("picture"),
+                                                    querySnapshot.getDouble("deposit"),
+                                                    querySnapshot.getDouble("rent")
+
+
+                                            );
+
+
+                                        }
+                                    }
+                                });
+
+
+                                //method to retrieve the picture
+                                Picasso.get().load(house.getPicture()).fit().centerCrop().into(holder.picture);
 
                                 holder.title.setText("Title: " + '\n' + document.getString("title"));
                                 holder.applicationId.setText("Application ID: " + '\n' + houseApplicationArrayList.get(position).getApplicationId());
@@ -85,6 +120,8 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
+
+
                 });
 
 
@@ -105,6 +142,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
     }
 
+
     @Override
     public int getItemCount() {
         return houseApplicationArrayList.size();
@@ -113,10 +151,12 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView title, applicationId, state;
+        public ImageView picture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            picture = itemView.findViewById(R.id.pictureSelectedHouseId);
             title = itemView.findViewById(R.id.titleSelectedHouseId);
             applicationId = itemView.findViewById(R.id.applicationId);
             state = itemView.findViewById(R.id.stateId);

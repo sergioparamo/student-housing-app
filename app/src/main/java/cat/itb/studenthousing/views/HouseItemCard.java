@@ -1,6 +1,5 @@
 package cat.itb.studenthousing.views;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,26 +8,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.Random;
 
 import cat.itb.studenthousing.MainActivity;
 import cat.itb.studenthousing.R;
-import cat.itb.studenthousing.fragments.LandingPage;
-import cat.itb.studenthousing.fragments.SelectedHouses;
 import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.models.HouseApplication;
 
+import static cat.itb.studenthousing.fragments.LandingPage.availableHousesRecyclerViewAdapter;
 import static cat.itb.studenthousing.fragments.LandingPage.db;
+import static cat.itb.studenthousing.fragments.SelectedHouses.selectedHousesRecyclerViewAdapter;
 
 public class HouseItemCard extends AppCompatActivity {
 
@@ -43,7 +38,7 @@ public class HouseItemCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.house_information_activity);
 
-        housePicture = findViewById(R.id.pictureId);
+        housePicture = findViewById(R.id.pictureHouseInfoId);
         title = findViewById(R.id.titleHouseListId);
         price = findViewById(R.id.priceHouseListId);
         deposit = findViewById(R.id.depositId);
@@ -69,6 +64,8 @@ public class HouseItemCard extends AppCompatActivity {
         houseActionButton = findViewById(R.id.actionButtonId);
         houseActionButton.setText(action);
 
+        Picasso.get().load(house.getPicture()).fit().centerCrop().into(housePicture);
+
 
         title.setText("Title: " + house.getTitle());
         price.setText("Price: " + (int) house.getRent() + "€/month");
@@ -93,6 +90,9 @@ public class HouseItemCard extends AppCompatActivity {
 
                     Toast.makeText(HouseItemCard.this, "Application created!", Toast.LENGTH_LONG).show();
 
+                    availableHousesRecyclerViewAdapter.notifyDataSetChanged();
+                    selectedHousesRecyclerViewAdapter.notifyDataSetChanged();
+
                     Intent fromHouseItemCardAddedToSelectedHousesIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(fromHouseItemCardAddedToSelectedHousesIntent);
 
@@ -101,6 +101,9 @@ public class HouseItemCard extends AppCompatActivity {
                     //Remove application
                     db.collection("applications").document(getIntent().getStringExtra("applicationId")).delete();
                     Toast.makeText(HouseItemCard.this, "Application removed!", Toast.LENGTH_LONG).show();
+
+                    availableHousesRecyclerViewAdapter.notifyDataSetChanged();
+                    selectedHousesRecyclerViewAdapter.notifyDataSetChanged();
 
                     Intent fromHouseItemCardRemovedToSelectedHousesIntent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(fromHouseItemCardRemovedToSelectedHousesIntent);

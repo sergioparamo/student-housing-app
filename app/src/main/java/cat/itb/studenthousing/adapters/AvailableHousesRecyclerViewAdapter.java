@@ -4,15 +4,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -20,8 +18,6 @@ import cat.itb.studenthousing.R;
 import cat.itb.studenthousing.fragments.LandingPage;
 import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.views.HouseItemCard;
-
-import static cat.itb.studenthousing.fragments.LandingPage.db;
 
 public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<AvailableHousesRecyclerViewAdapter.ViewHolder> {
 
@@ -62,9 +58,11 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
                     }
                 });
 */
+        Picasso.get().load(houseArrayList.get(position).getPicture()).fit().centerCrop().into(holder.picture);
+
         holder.ownerTextView.setText(houseArrayList.get(position).getOwnerId());
         holder.titleTextView.setText(houseArrayList.get(position).getTitle());
-        holder.priceTextView.setText((int)houseArrayList.get(position).getRent() + "€/month");
+        holder.priceTextView.setText((int) houseArrayList.get(position).getRent() + "€/month");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +70,7 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
 
                 Intent fromHouseToHouseCardIntent = new Intent(v.getContext(), HouseItemCard.class);
                 fromHouseToHouseCardIntent.putExtra("house", houseArrayList.get(position));
-                fromHouseToHouseCardIntent.putExtra("action","Add to list");
+                fromHouseToHouseCardIntent.putExtra("action", "Add to list");
                 v.getContext().startActivity(fromHouseToHouseCardIntent);
 
 
@@ -88,9 +86,12 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView ownerTextView, titleTextView, priceTextView;
+        public ImageView picture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            picture = itemView.findViewById(R.id.pictureHouseElementId);
 
             ownerTextView = itemView.findViewById(R.id.ownerHouseListId);
 

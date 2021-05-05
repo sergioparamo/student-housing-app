@@ -18,13 +18,22 @@ public class House implements Serializable {
     String address;
     String area;
     String facilities;
+    String picture;
     double deposit;
     double rent;
 
     public House() {
     }
 
-    public House(String houseId, String title, String ownerId, String description, String address, String area, String facilities, double deposit, double rent) {
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public House(String houseId, String title, String ownerId, String description, String address, String area, String facilities, String picture, double deposit, double rent) {
         this.houseId = houseId;
         this.title = title;
         this.ownerId = ownerId;
@@ -32,6 +41,7 @@ public class House implements Serializable {
         this.address = address;
         this.area = area;
         this.facilities = facilities;
+        this.picture = picture;
         this.deposit = deposit;
         this.rent = rent;
     }
