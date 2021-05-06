@@ -80,7 +80,7 @@ public class HouseItemCard extends AppCompatActivity {
                     HouseApplication houseApplication = new HouseApplication((userId + "_" + random.nextInt(999)), house.getHouseId(), userId, "Waiting for selection");
                     db.collection("applications").document(houseApplication.getApplicationId()).set(houseApplication);
 
-                    Toast.makeText(HouseItemCard.this, "Application created!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HouseItemCard.this, R.string.application_created, Toast.LENGTH_LONG).show();
 
 
                     Intent fromHouseItemCardAddedToSelectedHousesIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -90,7 +90,7 @@ public class HouseItemCard extends AppCompatActivity {
 
                     //Remove application
                     db.collection("applications").document(getIntent().getStringExtra("applicationId")).delete();
-                    Toast.makeText(HouseItemCard.this, "Application removed!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(HouseItemCard.this, R.string.application_removed, Toast.LENGTH_LONG).show();
 
 
                     Intent fromHouseItemCardRemovedToSelectedHousesIntent = new Intent(getApplicationContext(), MainActivity.class);

@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,13 +29,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Random;
+
 import cat.itb.studenthousing.R;
 import cat.itb.studenthousing.adapters.AvailableHousesRecyclerViewAdapter;
+import cat.itb.studenthousing.consoleMessages;
 import cat.itb.studenthousing.models.House;
+import cat.itb.studenthousing.models.HouseApplication;
 
 import static cat.itb.studenthousing.MainActivity.firebaseAuth;
-import static cat.itb.studenthousing.MainActivity.houseArrayList;
-import static cat.itb.studenthousing.MainActivity.housesId;
+import static cat.itb.studenthousing.MainActivity.availableHouseArrayList;
+import static cat.itb.studenthousing.MainActivity.housesIdWithApplicationList;
+import static cat.itb.studenthousing.fragments.SelectedHouses.selectedHousesRecyclerViewAdapter;
 
 public class LandingPage extends Fragment {
 
@@ -54,86 +60,21 @@ public class LandingPage extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        consoleMessages.printMessage("creating on landing page!");
+
 
     }
 
-
-    //This method will first create an array list of Strings with all the houses ID on the "applications" table
-    // Then it will execute a query to retrieve all the houses that are not on the array list (available)
-    public void loadAvailableHouses() {
-
-
-        db.collection("applications")
-                .whereEqualTo("studentId", firebaseAuth.getCurrentUser().getUid())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (DocumentSnapshot document : task.getResult()) {
-                            housesId.add(document.getString("houseId"));
-                        }
-
-                        db.collection("houses")
-
-                                .get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                        for (DocumentSnapshot querySnapshot : task.getResult()) {
-
-                                            //If the current house is not on our list will be added to the array to be  displayed on the recycler
-                                            if (!housesId.contains(querySnapshot.getString("houseId"))) {
-                                                House house = new House(
-
-                                                        querySnapshot.getString("houseId"),
-                                                        querySnapshot.getString("title"),
-                                                        querySnapshot.getString("ownerId"),
-                                                        querySnapshot.getString("description"),
-                                                        querySnapshot.getString("address"),
-                                                        querySnapshot.getString("area"),
-                                                        querySnapshot.getString("facilities"),
-                                                        querySnapshot.getString("picture"),
-                                                        querySnapshot.getDouble("deposit"),
-                                                        querySnapshot.getDouble("rent")
-
-
-                                                );
-
-
-                                                houseArrayList.add(house);
-                                            }
-
-                                        }
-                                        availableHousesRecyclerViewAdapter = new AvailableHousesRecyclerViewAdapter(LandingPage.this, houseArrayList);
-                                        mRecyclerView.setAdapter(availableHousesRecyclerViewAdapter);
-                                        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getContext(), "ERROR!!!!", Toast.LENGTH_LONG).show();
-                                    }
-                                });
-
-
-                    }
-                });
-
-    }
-
-    private void setUpFirebase() {
-        db = FirebaseFirestore.getInstance();
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.landing_page, container, false);
 
+        consoleMessages.printMessage("creating view on landing page!");
+        availableHouseArrayList.removeAll(availableHouseArrayList);
 
-        houseArrayList.removeAll(houseArrayList);
+
         mRecyclerView = v.findViewById(R.id.recyclerViewHouses);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setHasFixedSize(true);
@@ -210,14 +151,110 @@ public class LandingPage extends Fragment {
             }
         });
 
+        ItemTouchHelper.SimpleCallback swipeToAddApplication = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                Toast.makeText(getContext(), R.string.application_created, Toast.LENGTH_SHORT).show();
+                //Remove swiped item from list and notify the RecyclerView
+                int position = viewHolder.getAbsoluteAdapterPosition();
+
+                //crear aplicacion
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                Random random = new Random();
+                HouseApplication houseApplication = new HouseApplication((userId + "_" + random.nextInt(999)), availableHouseArrayList.get(position).getHouseId(), userId, "Waiting for selection");
+
+                db.collection("applications").document(houseApplication.getApplicationId()).set(houseApplication);
+                availableHouseArrayList.remove(availableHouseArrayList.get(position));
+
+
+                availableHousesRecyclerViewAdapter.notifyDataSetChanged();
+
+            }
+        };
+
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToAddApplication);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+
 
         return v;
+    }
+    //This method will first create an array list of Strings with all the houses ID on the "applications" table
+    // Then it will execute a query to retrieve all the houses that are not on the array list (available)
+
+    public void loadAvailableHouses() {
+
+
+        db.collection("applications")
+                .whereEqualTo("studentId", firebaseAuth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot document : task.getResult()) {
+                            housesIdWithApplicationList.add(document.getString("houseId"));
+                        }
+
+                        db.collection("houses")
+
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        for (DocumentSnapshot querySnapshot : task.getResult()) {
+
+                                            //If the current house is not on our list will be added to the array to be  displayed on the recycler
+                                            if (!housesIdWithApplicationList.contains(querySnapshot.getString("houseId"))) {
+                                                House house = new House(
+
+                                                        querySnapshot.getString("houseId"),
+                                                        querySnapshot.getString("title"),
+                                                        querySnapshot.getString("ownerId"),
+                                                        querySnapshot.getString("description"),
+                                                        querySnapshot.getString("address"),
+                                                        querySnapshot.getString("area"),
+                                                        querySnapshot.getString("facilities"),
+                                                        querySnapshot.getString("picture"),
+                                                        querySnapshot.getDouble("deposit"),
+                                                        querySnapshot.getDouble("rent")
+
+
+                                                );
+
+
+                                                availableHouseArrayList.add(house);
+                                            }
+
+                                        }
+                                        availableHousesRecyclerViewAdapter = new AvailableHousesRecyclerViewAdapter(LandingPage.this, availableHouseArrayList);
+                                        mRecyclerView.setAdapter(availableHousesRecyclerViewAdapter);
+                                        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getContext(), "ERROR!!!!", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+
+                    }
+                });
+
     }
 
     private void loadHousesFromFilter(int minValue, int maxValue, String area) {
 
         //cleaning the array
-        houseArrayList.removeAll(houseArrayList);
+        availableHouseArrayList.removeAll(availableHouseArrayList);
         availableHousesRecyclerViewAdapter.notifyDataSetChanged();
 
 
@@ -232,7 +269,7 @@ public class LandingPage extends Fragment {
                         for (DocumentSnapshot querySnapshot : task.getResult()) {
 
                             //If the current house is not on our list will be added to the array to be  displayed on the recycler
-                            if (!housesId.contains(querySnapshot.getString("houseId"))) {
+                            if (!housesIdWithApplicationList.contains(querySnapshot.getString("houseId"))) {
                                 House house = new House(
 
                                         querySnapshot.getString("houseId"),
@@ -250,11 +287,11 @@ public class LandingPage extends Fragment {
                                 );
 
 
-                                houseArrayList.add(house);
+                                availableHouseArrayList.add(house);
                             }
 
                         }
-                        availableHousesRecyclerViewAdapter = new AvailableHousesRecyclerViewAdapter(LandingPage.this, houseArrayList);
+                        availableHousesRecyclerViewAdapter = new AvailableHousesRecyclerViewAdapter(LandingPage.this, availableHouseArrayList);
                         mRecyclerView.setAdapter(availableHousesRecyclerViewAdapter);
                         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -281,6 +318,10 @@ public class LandingPage extends Fragment {
                     }
                 });
 
+    }
+
+    private void setUpFirebase() {
+        db = FirebaseFirestore.getInstance();
     }
 
 }

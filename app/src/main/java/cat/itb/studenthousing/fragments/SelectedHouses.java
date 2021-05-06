@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,15 +27,17 @@ import cat.itb.studenthousing.R;
 import cat.itb.studenthousing.adapters.SelectedHousesRecyclerViewAdapter;
 import cat.itb.studenthousing.models.HouseApplication;
 
+import static cat.itb.studenthousing.MainActivity.houseWithApplicationArrayList;
+import static cat.itb.studenthousing.MainActivity.housesIdWithApplicationList;
 import static cat.itb.studenthousing.fragments.LandingPage.db;
 
 public class SelectedHouses extends Fragment {
 
     private RecyclerView mRecyclerView;
 
-    ArrayList<HouseApplication> houseApplicationArrayList;
 
     public static SelectedHousesRecyclerViewAdapter selectedHousesRecyclerViewAdapter;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,9 +65,9 @@ public class SelectedHouses extends Fragment {
 
                             );
                             System.out.println("***************************************************" + houseApplication.toString());
-                            houseApplicationArrayList.add(houseApplication);
+                            houseWithApplicationArrayList.add(houseApplication);
                         }
-                        selectedHousesRecyclerViewAdapter = new SelectedHousesRecyclerViewAdapter(SelectedHouses.this, houseApplicationArrayList);
+                        selectedHousesRecyclerViewAdapter = new SelectedHousesRecyclerViewAdapter(SelectedHouses.this, houseWithApplicationArrayList);
                         mRecyclerView.setAdapter(selectedHousesRecyclerViewAdapter);
                         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                     }
@@ -87,9 +90,44 @@ public class SelectedHouses extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setHasFixedSize(true);
 
-        houseApplicationArrayList = new ArrayList<>();
+        houseWithApplicationArrayList = new ArrayList<>();
 
         loadApplicationsFromFirebase();
+
+
+        ItemTouchHelper.SimpleCallback swipeToDeleteApplication = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                Toast.makeText(getContext(), R.string.application_removed, Toast.LENGTH_SHORT).show();
+                //Remove swiped item from list and notify the RecyclerView
+                int position = viewHolder.getAbsoluteAdapterPosition();
+
+
+                db.collection("applications").document(houseWithApplicationArrayList.get(position).getApplicationId()).delete();
+
+
+                housesIdWithApplicationList.remove(houseWithApplicationArrayList.get(position).getHouseId());
+
+                houseWithApplicationArrayList.remove(position);
+
+
+                selectedHousesRecyclerViewAdapter.notifyDataSetChanged();
+
+            }
+        };
+
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeToDeleteApplication);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+
+
         return v;
     }
+
 }

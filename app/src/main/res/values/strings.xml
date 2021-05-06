@@ -69,6 +69,8 @@
     <string name="facebook_login_protocol_scheme" translatable="false">fb290663232598844</string>
     <string name="changeemail">Change email</string>
     <string name="h">Problem</string>
+    <string name="application_removed">Application removed!</string>
+    <string name="application_created">Application Created!</string>
 
 
 </resources>

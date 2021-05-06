@@ -131,6 +131,16 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
         return houseApplicationArrayList.size();
     }
 
+    public void deleteFromDB(int position) {
+
+        // delete query
+        db.collection("applications").document(houseApplicationArrayList.get(position).getApplicationId()).delete();
+
+
+        notifyItemRemoved(position);
+
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView title, applicationId, state;
