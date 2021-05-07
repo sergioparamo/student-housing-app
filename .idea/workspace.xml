@@ -10,9 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da5eb3c4-6cc7-40e1-bbda-638d1f4057b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/components/SwipeToDeleteCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/consoleMessages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_baseline_delete_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_5_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_5_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_location_18_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_maps_17_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_places_placereport_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/views/MapsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/bookmark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/gmaps.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -28,17 +35,22 @@
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_auth_6_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_firebaseui_firebase_ui_auth_6_4_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_17_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_17_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_3_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_1_0_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/Student_Housing.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Student_Housing.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/adapters/SelectedHousesRecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/adapters/SelectedHousesRecyclerViewAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/fragments/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/fragments/LandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/fragments/SelectedHouses.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/fragments/SelectedHouses.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/views/HouseItemCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/cat/itb/studenthousing/views/HouseItemCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/house_information_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/house_information_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/landing_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/landing_page.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/selected_houses_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/selected_houses_fragment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,8 +99,8 @@
       <list>
         <option value="navigationResourceFile" />
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -110,8 +122,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewC:/Users/laptop/AppData/Local/Android/Sdk/sources/android-30/android/widget/Button.java_SELECTED" value="Button" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26" />
     <property name="multi-representation-previewC:/Users/laptop/AppData/Local/Android/Sdk/sources/android-30/android/widget/Button.java_selected" value="Custom views" />
   </component>
   <component name="RecentsManager">
@@ -122,6 +135,7 @@
       <recent name="D:\ITB\M13-FinalProject\Student-Housing\app\src\main\res\drawable" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ITB\M13-FinalProject\Student-Housing\app\src\main\res\mipmap-anydpi-v26" />
       <recent name="D:\ITB\M13-FinalProject\Student-Housing\app\src\main\res\drawable-v24" />
       <recent name="D:\ITB\M13-FinalProject\Student-Housing\app\src\main\res\layout" />
       <recent name="D:\ITB\M13-FinalProject\Student-Housing\app\src\main\res\drawable" />
@@ -299,71 +313,81 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1198" y="165" key="#com.intellij.ide.util.MemberChooser" timestamp="1620238328083">
+    <state x="1198" y="165" key="#com.intellij.ide.util.MemberChooser" timestamp="1620415604920">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="958" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1619795222571" />
-    <state x="1198" y="165" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1620238328083" />
+    <state x="958" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1620400013532" />
+    <state x="1198" y="165" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1620415604920" />
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1620400857564">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1620400857564" />
     <state x="642" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1619647102892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="642" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619647102892" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1620236687931">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620236687931" />
-    <state x="432" y="218" key="AndroidCreateResourceDirectoryDialog" timestamp="1619620166924">
+    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1620400125369">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="432" y="218" key="AndroidCreateResourceDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1619620166924" />
-    <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619521954741" />
-    <state x="427" y="322" key="AndroidCreateResourceFileDialog" timestamp="1619805509871">
+    <state x="552" y="212" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1620400125369" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620236687931" />
+    <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog" timestamp="1620418385405">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="511" y="219" key="AndroidCreateResourceFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1619623593181" />
+    <state x="432" y="218" key="AndroidCreateResourceDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1619620166924" />
+    <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620418385405" />
+    <state x="511" y="219" key="AndroidCreateResourceFileDialog" timestamp="1620400073535">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="511" y="219" key="AndroidCreateResourceFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1620400073535" />
     <state x="427" y="322" key="AndroidCreateResourceFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619805509871" />
-    <state x="771" y="260" key="AndroidCreateXmlResourceDialog" timestamp="1620327305375">
+    <state x="771" y="260" key="AndroidCreateXmlResourceDialog" timestamp="1620418371432">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="617" y="206" key="AndroidCreateXmlResourceDialog/0.0.1536.824@0.0.1536.824" timestamp="1619540440577" />
-    <state x="771" y="260" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620327305375" />
-    <state width="1876" height="552" key="GridCell.Tab.0.bottom" timestamp="1620331079489">
+    <state x="771" y="260" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620418371432" />
+    <state width="1876" height="269" key="GridCell.Tab.0.bottom" timestamp="1620419023344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1491" height="26" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620231294616" />
-    <state width="1876" height="552" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620331079489" />
-    <state width="1876" height="552" key="GridCell.Tab.0.center" timestamp="1620331079489">
+    <state width="1491" height="3" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620403974364" />
+    <state width="1876" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620419023344" />
+    <state width="1876" height="269" key="GridCell.Tab.0.center" timestamp="1620419023343">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1491" height="26" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620231294616" />
-    <state width="1876" height="552" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620331079489" />
-    <state width="1876" height="552" key="GridCell.Tab.0.left" timestamp="1620331079488">
+    <state width="1491" height="3" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620403974364" />
+    <state width="1876" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620419023343" />
+    <state width="1876" height="269" key="GridCell.Tab.0.left" timestamp="1620419023343">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1491" height="26" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620231294615" />
-    <state width="1876" height="552" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620331079488" />
-    <state width="1876" height="552" key="GridCell.Tab.0.right" timestamp="1620331079489">
+    <state width="1491" height="3" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620403974363" />
+    <state width="1876" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620419023343" />
+    <state width="1876" height="269" key="GridCell.Tab.0.right" timestamp="1620419023344">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1491" height="26" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620231294616" />
-    <state width="1876" height="552" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620331079489" />
-    <state x="613" y="193" width="720" height="682" key="StructurePopup" timestamp="1620327381289">
+    <state width="1491" height="3" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620403974364" />
+    <state width="1876" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620419023344" />
+    <state x="613" y="193" width="720" height="682" key="StructurePopup" timestamp="1620418863581">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="490" y="153" width="576" height="540" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1620230303602" />
-    <state x="613" y="193" width="720" height="682" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1620327381289" />
+    <state x="490" y="153" width="576" height="540" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1620403969741" />
+    <state x="613" y="193" width="720" height="682" key="StructurePopup/0.0.1920.1040@0.0.1920.1040" timestamp="1620418863581" />
     <state x="584" y="190" key="chooseDestDirectoryDialog" timestamp="1619537694629">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="584" y="190" key="chooseDestDirectoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1619537694629" />
+    <state x="690" y="205" key="extract.method.dialog" timestamp="1620409997528">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="205" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620409997528" />
     <state x="669" y="273" key="refactoring.ChangeSignatureDialog" timestamp="1619806623136">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="669" y="273" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1619806623136" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1619704265574">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="531" y="236" key="run.anything.popup" timestamp="1620412485630">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1619704265574" />
+    <state x="531" y="236" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1620412485630" />
     <state x="539" y="183" width="840" height="856" key="search.everywhere.popup" timestamp="1619803147010">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -1,6 +1,10 @@
 package cat.itb.studenthousing.fragments;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,14 +34,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.Random;
 
+import cat.itb.studenthousing.MainActivity;
 import cat.itb.studenthousing.R;
 import cat.itb.studenthousing.adapters.AvailableHousesRecyclerViewAdapter;
 import cat.itb.studenthousing.consoleMessages;
 import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.models.HouseApplication;
+import cat.itb.studenthousing.views.MapsActivity;
 
 import static cat.itb.studenthousing.MainActivity.firebaseAuth;
 import static cat.itb.studenthousing.MainActivity.availableHouseArrayList;
@@ -49,6 +59,7 @@ public class LandingPage extends Fragment {
     private EditText maxPrice, minPrice;
     private Spinner areaSpinner;
     private Button searchButton;
+    private ImageView searchByMapImageView;
     String area, minValue, maxValue;
     FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -88,7 +99,7 @@ public class LandingPage extends Fragment {
 
                 if (user != null) {
                     loadAvailableHouses();
-                    //loadAllAvailableHousesFromFirebase();
+
                 } else {
 
                 }
@@ -101,6 +112,7 @@ public class LandingPage extends Fragment {
         minPrice = v.findViewById(R.id.minPriceEditText);
         areaSpinner = v.findViewById(R.id.areaSpinner);
         searchButton = v.findViewById(R.id.searchButton);
+        searchByMapImageView = v.findViewById(R.id.searchByMapImageView);
 
         ArrayAdapter<CharSequence> Spinneradapter = ArrayAdapter.createFromResource(getContext(), R.array.bcnareas, android.R.layout.simple_spinner_item);
 
@@ -122,6 +134,8 @@ public class LandingPage extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 minValue = minPrice.getText().toString();
                 maxValue = maxPrice.getText().toString();
 
@@ -148,6 +162,16 @@ public class LandingPage extends Fragment {
                     loadHousesFromFilter(minVal, maxVal, area);
                 }
 
+            }
+        });
+
+        searchByMapImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //To load fragment to search the house
+                Intent fromHouseItemCardToMapsActivity = new Intent(v.getContext(), MapsActivity.class);
+                //fromHouseItemCardToMapsActivity.putExtra("house", availableHouseArrayList);
+                startActivity(fromHouseItemCardToMapsActivity);
             }
         });
 
@@ -236,6 +260,30 @@ public class LandingPage extends Fragment {
                                         mRecyclerView.setAdapter(availableHousesRecyclerViewAdapter);
                                         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
+
+                                        //load all the images to the arraylist
+/*
+
+                                        MainActivity.images = new Bitmap[availableHouseArrayList.size()];
+
+                                        int counter = 0;
+
+                                        for (House house : availableHouseArrayList) {
+
+
+                                            checkAndroidData(new Listener<Bitmap[]>() {
+                                                @Override
+                                                public void on(Bitmap[] arg) {
+                                                    MainActivity.images[availableHouseArrayList.indexOf(house)] = arg[0];
+                                                }
+
+
+                                            }, house);
+                                        }
+
+                                        consoleMessages.printMessage("SIZE OF THE IMAGES " + MainActivity.images.length);*/
+
+
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -248,6 +296,7 @@ public class LandingPage extends Fragment {
 
                     }
                 });
+
 
     }
 
@@ -323,5 +372,27 @@ public class LandingPage extends Fragment {
     private void setUpFirebase() {
         db = FirebaseFirestore.getInstance();
     }
+
+    /*public void checkAndroidData(Listener<Bitmap[]> onCompleteListener, House house) {
+
+        Handler uiHandler = new Handler(Looper.getMainLooper());
+        uiHandler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                final Bitmap[] image = new Bitmap[1];
+
+                try {
+                    image[0] = Picasso.get().load(house.getPicture()).fit().centerCrop().get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public interface Listener<T> {
+        void on(T arg);
+    }*/
 
 }

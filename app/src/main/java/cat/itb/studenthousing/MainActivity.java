@@ -1,7 +1,9 @@
 package cat.itb.studenthousing;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +35,9 @@ import cat.itb.studenthousing.models.HouseApplication;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    int resultCode = 0;
+
+    public static Bitmap[] images;
 
     //this var will store all the houses that the user has already applied for
     public static List<String> housesIdWithApplicationList;
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mainContext = getApplicationContext();
 
@@ -114,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "You logged out!", Toast.LENGTH_LONG).show();
             }
         });
+
+        onBackPressed();
 
     }
 
@@ -209,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     public void changeEmail(View view) {
 
