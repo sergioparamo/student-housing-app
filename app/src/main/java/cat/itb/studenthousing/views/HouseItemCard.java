@@ -39,9 +39,9 @@ import static cat.itb.studenthousing.fragments.SelectedHouses.selectedHousesRecy
 public class HouseItemCard extends AppCompatActivity {
 
     private ImageView housePicture, mapsImageView;
-    private TextView title, price, deposit, owner, description, facilities, address, area;
+    private TextView title, price, deposit, description, facilities, address, area;
     public House house;
-    //FloatingActionButton addHouseButton;
+
     Button houseActionButton;
 
     @Override
@@ -55,7 +55,7 @@ public class HouseItemCard extends AppCompatActivity {
         title = findViewById(R.id.titleHouseListId);
         price = findViewById(R.id.priceHouseListId);
         deposit = findViewById(R.id.depositId);
-        owner = findViewById(R.id.ownerId);
+
         description = findViewById(R.id.descriptionId);
         facilities = findViewById(R.id.facilitiesId);
         address = findViewById(R.id.addressId);
@@ -75,7 +75,6 @@ public class HouseItemCard extends AppCompatActivity {
         title.setText("Title: " + house.getTitle());
         price.setText("Price: " + (int) house.getRent() + "€/month");
         deposit.setText("Deposit: " + (int) house.getDeposit() + "€");
-        owner.setText("Owner ID: " + house.getOwnerId());
         description.setText("Description: " + house.getDescription());
         facilities.setText("Facilities: " + house.getFacilities());
         address.setText("Address: " + house.getAddress());

@@ -22,7 +22,7 @@ import cat.itb.studenthousing.R;
 
 public class StudentProfile extends Fragment {
 
-    private TextView username, fullName, email, phone;
+    private TextView fullName, email, phone;
 
     @Nullable
     @Override
@@ -31,19 +31,17 @@ public class StudentProfile extends Fragment {
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        username = v.findViewById(R.id.usernameId);
+
         fullName = v.findViewById(R.id.fullNameId);
         email = v.findViewById(R.id.emailId);
         phone = v.findViewById(R.id.phoneId);
 
-        username.setText("User ID: " + '\n' + firebaseUser.getUid());
         fullName.setText("Full name: " + '\n' + firebaseUser.getDisplayName());
         email.setText("Email: " + '\n' + firebaseUser.getEmail());
         if (phone.getText().toString().isEmpty()) {
             phone.setVisibility(View.GONE);
 
-            //TODO IMPLEMENT UPDATE PHONE NUMBER
-            // firebaseUser.updatePhoneNumber(234);
+
         } else {
             phone.setText("Phone number: " + '\n' + firebaseUser.getPhoneNumber());
         }

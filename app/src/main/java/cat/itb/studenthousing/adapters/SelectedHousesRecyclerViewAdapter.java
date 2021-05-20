@@ -83,7 +83,6 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                                 Picasso.get().load(house.getPicture()).fit().centerCrop().into(holder.picture);
 
                                 holder.title.setText("Title: " + '\n' + document.getString("title"));
-                                holder.applicationId.setText("Application ID: " + '\n' + houseApplicationArrayList.get(position).getApplicationId());
                                 holder.state.setText("State: " + houseApplicationArrayList.get(position).getState());
 
                             }
@@ -143,7 +142,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView title, applicationId, state;
+        public TextView title, state;
         public ImageView picture;
 
         public ViewHolder(@NonNull View itemView) {
@@ -151,7 +150,6 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
             picture = itemView.findViewById(R.id.pictureSelectedHouseId);
             title = itemView.findViewById(R.id.titleSelectedHouseId);
-            applicationId = itemView.findViewById(R.id.applicationId);
             state = itemView.findViewById(R.id.stateId);
 
 

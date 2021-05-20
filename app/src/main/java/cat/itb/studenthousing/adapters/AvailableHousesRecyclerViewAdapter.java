@@ -60,7 +60,8 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
 */
         Picasso.get().load(houseArrayList.get(position).getPicture()).fit().centerCrop().into(holder.picture);
 
-        holder.ownerTextView.setText(houseArrayList.get(position).getOwnerId());
+
+        holder.areaTextView.setText(houseArrayList.get(position).getArea());
         holder.titleTextView.setText(houseArrayList.get(position).getTitle());
         holder.priceTextView.setText((int) houseArrayList.get(position).getRent() + "€/month");
 
@@ -85,7 +86,7 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView ownerTextView, titleTextView, priceTextView;
+        public TextView areaTextView, titleTextView, priceTextView;
         public ImageView picture;
 
         public ViewHolder(@NonNull View itemView) {
@@ -93,8 +94,8 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
 
             picture = itemView.findViewById(R.id.pictureHouseElementId);
 
-            ownerTextView = itemView.findViewById(R.id.ownerHouseListId);
 
+            areaTextView = itemView.findViewById(R.id.areaHouseListId);
             titleTextView = itemView.findViewById(R.id.titleHouseListId);
 
             priceTextView = itemView.findViewById(R.id.priceHouseListId);

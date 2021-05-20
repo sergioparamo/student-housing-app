@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyBq1WDMggS_yt-yHCjqtDhc1T_xOSoIpVs" />
         <activity android:name=".models.Login" />
         <activity android:name=".Register" />
         <activity android:name=".views.HouseItemCard" />

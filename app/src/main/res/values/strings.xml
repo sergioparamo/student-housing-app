@@ -31,7 +31,6 @@
 
     <string name="username">Username</string>
     <string name="name">Full name</string>
-    <string name="socialsecuritynumber">Social Security Number</string>
     <string name="email">Email</string>
 
     <string name="settings">Settings</string>
@@ -61,12 +60,9 @@
 
     <string name="addhousetolist">Add to list</string>
 
-    <string name="ciutatvella">Add house</string>
     <string name="password">Password</string>
     <string name="house_card">House Information</string>
 
-    <string name="facebook_application_id" translatable="false">290663232598844</string>
-    <string name="facebook_login_protocol_scheme" translatable="false">fb290663232598844</string>
     <string name="changeemail">Change email</string>
     <string name="h">Problem</string>
     <string name="application_removed">Application removed!</string>

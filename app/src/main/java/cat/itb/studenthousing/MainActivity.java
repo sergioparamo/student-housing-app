@@ -121,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        onBackPressed();
-
     }
 
     public void deleteAccount(View view) {

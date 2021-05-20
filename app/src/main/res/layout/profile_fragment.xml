@@ -42,24 +42,7 @@
         android:layout_marginLeft="20dp">
 
 
-        <TextView
-            android:id="@+id/usernameId"
-            style="@style/fontItemStyle"
-            android:textSize="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:hint="Username"
-            android:paddingTop="5dp"
-            android:paddingBottom="20dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
 
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlCompat" />
 
         <TextView
             android:id="@+id/fullNameId"
@@ -76,7 +59,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameId"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="RtlCompat" />
 

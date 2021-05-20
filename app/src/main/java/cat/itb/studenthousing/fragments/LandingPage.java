@@ -52,7 +52,7 @@ import static cat.itb.studenthousing.MainActivity.availableHouseArrayList;
 import static cat.itb.studenthousing.MainActivity.housesIdWithApplicationList;
 import static cat.itb.studenthousing.fragments.SelectedHouses.selectedHousesRecyclerViewAdapter;
 
-public class LandingPage extends Fragment {
+public class LandingPage extends Fragment implements View.OnClickListener {
 
     public static FirebaseFirestore db;
     private RecyclerView mRecyclerView;
@@ -112,6 +112,7 @@ public class LandingPage extends Fragment {
         minPrice = v.findViewById(R.id.minPriceEditText);
         areaSpinner = v.findViewById(R.id.areaSpinner);
         searchButton = v.findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(this);
         searchByMapImageView = v.findViewById(R.id.searchByMapImageView);
 
         ArrayAdapter<CharSequence> Spinneradapter = ArrayAdapter.createFromResource(getContext(), R.array.bcnareas, android.R.layout.simple_spinner_item);
@@ -131,46 +132,12 @@ public class LandingPage extends Fragment {
             }
         });
 
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                minValue = minPrice.getText().toString();
-                maxValue = maxPrice.getText().toString();
-
-                int minVal, maxVal;
-
-                if (!TextUtils.isEmpty(minValue) && TextUtils.isDigitsOnly(minValue)) {
-
-                    minVal = Integer.parseInt(minValue);
-                } else {
-                    minVal = 0;
-                }
-
-                if (!TextUtils.isEmpty(maxValue) && TextUtils.isDigitsOnly(maxValue)) {
-                    maxVal = Integer.parseInt(maxValue);
-                } else {
-                    maxVal = 0;
-                }
-
-                if (maxVal == 0 || minVal == 0) {
-
-                    Toast.makeText(getContext(), "You have to add a value", Toast.LENGTH_LONG).show();
-
-                } else {
-                    loadHousesFromFilter(minVal, maxVal, area);
-                }
-
-            }
-        });
-
         searchByMapImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //To load fragment to search the house
+
                 Intent fromHouseItemCardToMapsActivity = new Intent(v.getContext(), MapsActivity.class);
-                //fromHouseItemCardToMapsActivity.putExtra("house", availableHouseArrayList);
+
                 startActivity(fromHouseItemCardToMapsActivity);
             }
         });
@@ -185,10 +152,10 @@ public class LandingPage extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 Toast.makeText(getContext(), R.string.application_created, Toast.LENGTH_SHORT).show();
-                //Remove swiped item from list and notify the RecyclerView
+
                 int position = viewHolder.getAbsoluteAdapterPosition();
 
-                //crear aplicacion
+
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Random random = new Random();
                 HouseApplication houseApplication = new HouseApplication((userId + "_" + random.nextInt(999)), availableHouseArrayList.get(position).getHouseId(), userId, "Waiting for selection");
@@ -209,10 +176,10 @@ public class LandingPage extends Fragment {
 
         return v;
     }
-    //This method will first create an array list of Strings with all the houses ID on the "applications" table
-    // Then it will execute a query to retrieve all the houses that are not on the array list (available)
 
     public void loadAvailableHouses() {
+
+        availableHouseArrayList.removeAll(availableHouseArrayList);
 
 
         db.collection("applications")
@@ -261,29 +228,6 @@ public class LandingPage extends Fragment {
                                         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-                                        //load all the images to the arraylist
-/*
-
-                                        MainActivity.images = new Bitmap[availableHouseArrayList.size()];
-
-                                        int counter = 0;
-
-                                        for (House house : availableHouseArrayList) {
-
-
-                                            checkAndroidData(new Listener<Bitmap[]>() {
-                                                @Override
-                                                public void on(Bitmap[] arg) {
-                                                    MainActivity.images[availableHouseArrayList.indexOf(house)] = arg[0];
-                                                }
-
-
-                                            }, house);
-                                        }
-
-                                        consoleMessages.printMessage("SIZE OF THE IMAGES " + MainActivity.images.length);*/
-
-
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -302,7 +246,6 @@ public class LandingPage extends Fragment {
 
     private void loadHousesFromFilter(int minValue, int maxValue, String area) {
 
-        //cleaning the array
         availableHouseArrayList.removeAll(availableHouseArrayList);
         availableHousesRecyclerViewAdapter.notifyDataSetChanged();
 
@@ -340,23 +283,12 @@ public class LandingPage extends Fragment {
                             }
 
                         }
+
                         availableHousesRecyclerViewAdapter = new AvailableHousesRecyclerViewAdapter(LandingPage.this, availableHouseArrayList);
                         mRecyclerView.setAdapter(availableHousesRecyclerViewAdapter);
                         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
                         searchButton.setText("Clear search");
-
-                        searchButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                searchButton.setText(R.string.search);
-                                minPrice.setText("");
-                                maxPrice.setText("");
-                                areaSpinner.setVerticalScrollbarPosition(0);
-                                loadAvailableHouses();
-
-                            }
-                        });
 
                     }
                 })
@@ -373,26 +305,52 @@ public class LandingPage extends Fragment {
         db = FirebaseFirestore.getInstance();
     }
 
-    /*public void checkAndroidData(Listener<Bitmap[]> onCompleteListener, House house) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.searchButton:
+                String text = searchButton.getText().toString();
+                if (text.equals("Search")) {
+                    Toast.makeText(getContext(), "search button pulsado", Toast.LENGTH_LONG).show();
 
-        Handler uiHandler = new Handler(Looper.getMainLooper());
-        uiHandler.post(new Runnable() {
-            @Override
-            public void run() {
 
-                final Bitmap[] image = new Bitmap[1];
+                    minValue = minPrice.getText().toString();
+                    maxValue = maxPrice.getText().toString();
 
-                try {
-                    image[0] = Picasso.get().load(house.getPicture()).fit().centerCrop().get();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    int minVal, maxVal;
+
+                    if (!TextUtils.isEmpty(minValue) && TextUtils.isDigitsOnly(minValue)) {
+
+                        minVal = Integer.parseInt(minValue);
+                    } else {
+                        minVal = 0;
+                    }
+
+                    if (!TextUtils.isEmpty(maxValue) && TextUtils.isDigitsOnly(maxValue)) {
+                        maxVal = Integer.parseInt(maxValue);
+                    } else {
+                        maxVal = 0;
+                    }
+
+                    if (maxVal == 0 || minVal == 0) {
+
+                        Toast.makeText(getContext(), "You have to add a value", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        String message = minVal + " " + maxVal + area;
+
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+
+                        loadHousesFromFilter(minVal, maxVal, area);
+                    }
+                } else {
+                    searchButton.setText(R.string.search);
+                    minPrice.setText("");
+                    maxPrice.setText("");
+                    loadAvailableHouses();
                 }
-            }
-        });
+
+                break;
+        }
     }
-
-    public interface Listener<T> {
-        void on(T arg);
-    }*/
-
 }
