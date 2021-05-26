@@ -85,6 +85,8 @@ public class LandingPage extends Fragment implements View.OnClickListener {
         consoleMessages.printMessage("creating view on landing page!");
         availableHouseArrayList.removeAll(availableHouseArrayList);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         mRecyclerView = v.findViewById(R.id.recyclerViewHouses);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -156,10 +158,9 @@ public class LandingPage extends Fragment implements View.OnClickListener {
                 int position = viewHolder.getAbsoluteAdapterPosition();
 
 
-                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Random random = new Random();
-                HouseApplication houseApplication = new HouseApplication((userId + "_" + random.nextInt(999)), availableHouseArrayList.get(position).getHouseId(), userId, "Waiting for selection");
-
+                HouseApplication houseApplication = new HouseApplication((user.getUid() + "_" + random.nextInt(999)), user.getDisplayName(), user.getEmail(), availableHouseArrayList.get(position).getHouseId(), user.getUid(), "Waiting for selection");
+                consoleMessages.printMessage(houseApplication.toString());
                 db.collection("applications").document(houseApplication.getApplicationId()).set(houseApplication);
                 availableHouseArrayList.remove(availableHouseArrayList.get(position));
 

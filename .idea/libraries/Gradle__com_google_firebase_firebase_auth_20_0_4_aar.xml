@@ -7,9 +7,7 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/730de35a814976a95e4dd76473e74dbd/jetified-firebase-auth-20.0.4/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/730de35a814976a95e4dd76473e74dbd/jetified-firebase-auth-20.0.4/res" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-auth/20.0.4/ec35eb9119cc9df43be51e0747fdb951378594b0/firebase-auth-20.0.4-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES />
   </library>
 </component>

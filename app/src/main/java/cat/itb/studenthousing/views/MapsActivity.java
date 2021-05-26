@@ -70,7 +70,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -96,8 +95,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerDragListener(this);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            enableUserLocation();
-//            zoomToUserLocation();
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
                 //We can show user a dialog why this permission is necessary
@@ -108,21 +105,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
 
-        // Add a marker at Taj Mahal and move the camera
-//        LatLng latLng = new LatLng(27.1751, 78.0421);
-//        MarkerOptions markerOptions = new MarkerOptions()
-//                                            .position(latLng)
-//                                            .title("Taj Mahal")
-//                                            .snippet("Wonder of the world!");
-//        mMap.addMarker(markerOptions);
-//        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 16);
-//        mMap.animateCamera(cameraUpdate);
-
 
         try {
-            //get from the object that retreives the intent
-
-            //House house = (House) getIntent().getSerializableExtra("house");
 
 
             for (House house : availableHouseArrayList) {
@@ -139,19 +123,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     mMap.addMarker(markerOptions);
 
-                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                        @Override
-                        public void onInfoWindowClick(@NonNull Marker marker) {
-                            Intent fromSelectedMarkerToHouseItemCard = new Intent(getApplicationContext(), HouseItemCard.class);
-                            fromSelectedMarkerToHouseItemCard.putExtra("house", house);
-                            fromSelectedMarkerToHouseItemCard.putExtra("action", "Add to list");
-                            startActivity(fromSelectedMarkerToHouseItemCard);
-                        }
-                    });
-                    
+
 
                 }
             }
+
+            mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(@NonNull Marker marker) {
+
+                    for (int i = 0; i < availableHouseArrayList.size(); i++) {
+
+                        if (marker.getTitle().startsWith(availableHouseArrayList.get(i).getTitle())) {
+                            Intent fromSelectedMarkerToHouseItemCard = new Intent(getApplicationContext(), HouseItemCard.class);
+                            fromSelectedMarkerToHouseItemCard.putExtra("house", availableHouseArrayList.get(i));
+                            fromSelectedMarkerToHouseItemCard.putExtra("action", "Add to list");
+                            startActivity(fromSelectedMarkerToHouseItemCard);
+                        }
+                    }
+
+                }
+            });
 
 
             //Once we have finished we will move the camera to the city (currently Barcelona)

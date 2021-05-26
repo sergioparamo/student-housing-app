@@ -7,9 +7,7 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2df6dee1bdf3a1efe9d865cbb54a7a87/jetified-firebase-installations-interop-16.0.1/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2df6dee1bdf3a1efe9d865cbb54a7a87/jetified-firebase-installations-interop-16.0.1/jars/classes.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-installations-interop/16.0.1/e0baec714e4cffbf7aed0e3daa5530c10c018eb2/firebase-installations-interop-16.0.1-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES />
   </library>
 </component>

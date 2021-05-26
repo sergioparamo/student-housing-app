@@ -1,9 +1,7 @@
 package cat.itb.studenthousing;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +20,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
@@ -35,9 +32,6 @@ import cat.itb.studenthousing.models.HouseApplication;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    int resultCode = 0;
-
-    public static Bitmap[] images;
 
     //this var will store all the houses that the user has already applied for
     public static List<String> housesIdWithApplicationList;
@@ -49,13 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     List<AuthUI.IdpConfig> provider = Arrays.asList(
             new AuthUI.IdpConfig.GoogleBuilder().build(),
-            new AuthUI.IdpConfig.EmailBuilder().build(),
-            new AuthUI.IdpConfig.PhoneBuilder().build()
+            new AuthUI.IdpConfig.EmailBuilder().build()
 
     );
 
     public static Context mainContext;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

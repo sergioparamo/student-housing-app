@@ -7,9 +7,7 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a65a3b6de4c0fc13a01a7259794e8e5e/jetified-protolite-well-known-types-17.1.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a65a3b6de4c0fc13a01a7259794e8e5e/jetified-protolite-well-known-types-17.1.1/jars/classes.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/protolite-well-known-types/17.1.1/5fbe3622c8be8565ee56aa41117b13f095965904/protolite-well-known-types-17.1.1-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES />
   </library>
 </component>

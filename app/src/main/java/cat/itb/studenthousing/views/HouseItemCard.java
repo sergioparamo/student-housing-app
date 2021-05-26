@@ -18,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -48,6 +49,9 @@ public class HouseItemCard extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.house_information_activity);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
         housePicture = findViewById(R.id.pictureHouseInfoId);
@@ -85,11 +89,12 @@ public class HouseItemCard extends AppCompatActivity {
             public void onClick(View v) {
                 if (action.equals("Add to list")) {
 
-                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     Random random = new Random();
 
                     //Add application
-                    HouseApplication houseApplication = new HouseApplication((userId + "_" + random.nextInt(999)), house.getHouseId(), userId, "Waiting for selection");
+                    HouseApplication houseApplication = new HouseApplication((user.getUid() + "_" + random.nextInt(999)), user.getDisplayName(), user.getEmail(), house.getHouseId(), user.getUid(), "Waiting for selection");
+
+                    consoleMessages.printMessage(houseApplication.toString());
                     db.collection("applications").document(houseApplication.getApplicationId()).set(houseApplication);
 
                     Toast.makeText(HouseItemCard.this, R.string.application_created, Toast.LENGTH_LONG).show();

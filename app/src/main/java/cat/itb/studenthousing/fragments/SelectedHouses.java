@@ -59,6 +59,8 @@ public class SelectedHouses extends Fragment {
 
                             HouseApplication houseApplication = new HouseApplication(
                                     querySnapshot.getString("applicationId"),
+                                    querySnapshot.getString("studentName"),
+                                    querySnapshot.getString("studentEmail"),
                                     querySnapshot.getString("houseId"),
                                     querySnapshot.getString("studentId"),
                                     querySnapshot.getString("state")

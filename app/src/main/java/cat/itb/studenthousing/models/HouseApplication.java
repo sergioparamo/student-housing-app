@@ -7,11 +7,22 @@ import java.io.Serializable;
 public class HouseApplication implements Serializable {
 
     String applicationId;
+    String studentName;
+    String studentEmail;
     String houseId;
     String studentId;
     String state;
 
     public HouseApplication() {
+    }
+
+    public HouseApplication(String applicationId, String studentName, String studentEmail, String houseId, String studentId, String state) {
+        this.applicationId = applicationId;
+        this.studentName = studentName;
+        this.studentEmail = studentEmail;
+        this.houseId = houseId;
+        this.studentId = studentId;
+        this.state = state;
     }
 
     public String getApplicationId() {
@@ -46,17 +57,12 @@ public class HouseApplication implements Serializable {
         this.state = state;
     }
 
-    public HouseApplication(String applicationId, String houseId, String studentId, String state) {
-        this.applicationId = applicationId;
-        this.houseId = houseId;
-        this.studentId = studentId;
-        this.state = state;
-    }
-
     @Override
     public String toString() {
         return "HouseApplication{" +
                 "applicationId='" + applicationId + '\'' +
+                ", studentName='" + studentName + '\'' +
+                ", studentEmail='" + studentEmail + '\'' +
                 ", houseId='" + houseId + '\'' +
                 ", studentId='" + studentId + '\'' +
                 ", state='" + state + '\'' +
