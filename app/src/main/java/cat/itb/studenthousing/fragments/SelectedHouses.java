@@ -107,7 +107,6 @@ public class SelectedHouses extends Fragment {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 Toast.makeText(getContext(), R.string.application_removed, Toast.LENGTH_SHORT).show();
-                //Remove swiped item from list and notify the RecyclerView
                 int position = viewHolder.getAbsoluteAdapterPosition();
 
 

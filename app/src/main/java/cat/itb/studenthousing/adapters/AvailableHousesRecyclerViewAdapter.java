@@ -42,22 +42,6 @@ public class AvailableHousesRecyclerViewAdapter extends RecyclerView.Adapter<Ava
     @Override
     public void onBindViewHolder(@NonNull AvailableHousesRecyclerViewAdapter.ViewHolder holder, int position) {
 
-     /*   db.collection("applications")
-                .whereEqualTo("houseId",houseArrayList.get(position).getHouseId())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (!document.getString("state").equals("waiting for selection")){
-                                        
-                                }
-                            }
-                        }
-                    }
-                });
-*/
         Picasso.get().load(houseArrayList.get(position).getPicture()).fit().centerCrop().into(holder.picture);
 
 

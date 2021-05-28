@@ -7,7 +7,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d5490c370ebdc18ffbd345e6bf4d3ab7/jetified-firebase-ui-storage-7.1.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d5490c370ebdc18ffbd345e6bf4d3ab7/jetified-firebase-ui-storage-7.1.1/AndroidManifest.xml" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebaseui/firebase-ui-storage/7.1.1/b8fc90fcda27bee710c6ad781df5981d4c717202/firebase-ui-storage-7.1.1-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.firebaseui/firebase-ui-storage/7.1.1/70138a334679af9663c9b54f2b35ff97f20dc552/firebase-ui-storage-7.1.1-sources.jar!/" />
     </SOURCES>

@@ -1,8 +1,6 @@
 package cat.itb.studenthousing.views;
 
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -14,28 +12,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 import cat.itb.studenthousing.MainActivity;
 import cat.itb.studenthousing.R;
-import cat.itb.studenthousing.consoleMessages;
 import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.models.HouseApplication;
 
-import static cat.itb.studenthousing.MainActivity.availableHouseArrayList;
-import static cat.itb.studenthousing.fragments.LandingPage.availableHousesRecyclerViewAdapter;
 import static cat.itb.studenthousing.fragments.LandingPage.db;
-import static cat.itb.studenthousing.fragments.SelectedHouses.selectedHousesRecyclerViewAdapter;
 
 public class HouseItemCard extends AppCompatActivity {
 
@@ -91,10 +79,8 @@ public class HouseItemCard extends AppCompatActivity {
 
                     Random random = new Random();
 
-                    //Add application
                     HouseApplication houseApplication = new HouseApplication((user.getUid() + "_" + random.nextInt(999)), user.getDisplayName(), user.getEmail(), house.getHouseId(), user.getUid(), "Waiting for selection");
 
-                    consoleMessages.printMessage(houseApplication.toString());
                     db.collection("applications").document(houseApplication.getApplicationId()).set(houseApplication);
 
                     Toast.makeText(HouseItemCard.this, R.string.application_created, Toast.LENGTH_LONG).show();
@@ -105,7 +91,6 @@ public class HouseItemCard extends AppCompatActivity {
 
                 } else {
 
-                    //Remove application
                     db.collection("applications").document(getIntent().getStringExtra("applicationId")).delete();
                     Toast.makeText(HouseItemCard.this, R.string.application_removed, Toast.LENGTH_LONG).show();
 

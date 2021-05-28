@@ -3,16 +3,12 @@ package cat.itb.studenthousing.views;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,21 +25,17 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.List;
 
-import cat.itb.studenthousing.MainActivity;
 import cat.itb.studenthousing.R;
-import cat.itb.studenthousing.consoleMessages;
 import cat.itb.studenthousing.models.House;
 
 import static cat.itb.studenthousing.MainActivity.availableHouseArrayList;
@@ -82,7 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setFastestInterval(500);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        consoleMessages.printMessage("ON CREATE FINALIZADO");
+
     }
 
     @Override
@@ -97,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                //We can show user a dialog why this permission is necessary
+
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
@@ -146,7 +138,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             });
 
 
-            //Once we have finished we will move the camera to the city (currently Barcelona)
+
             LatLng latLng = new LatLng(41.3947687, 2.0785568);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
 
@@ -172,7 +164,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         if (userLocationMarker == null) {
-            //Create a new marker
+
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(latLng);
             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.bookmark));
@@ -181,7 +173,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             userLocationMarker = mMap.addMarker(markerOptions);
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
         } else {
-            //use the previously created marker
+
             userLocationMarker.setPosition(latLng);
             userLocationMarker.setRotation(location.getBearing());
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));

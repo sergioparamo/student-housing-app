@@ -53,7 +53,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
     public void onBindViewHolder(@NonNull SelectedHousesRecyclerViewAdapter.ViewHolder holder, int position) {
 
 
-        //Aqui hacemos un select en la tabla de casas donde la casa ID sea igual a al de la casa actual
+
         db.collection("houses")
                 .whereEqualTo("houseId", houseApplicationArrayList.get(position).getHouseId())
                 .get()
@@ -63,7 +63,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                //recogemos la casa para pasarla al intent despues
+
                                 House house = new House(document.getString("houseId"),
                                         document.getString("title"),
                                         document.getString("ownerId"),
@@ -79,7 +79,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
                                 houseArrayList.add(house);
 
 
-                                //method to retrieve the picture
+
                                 Picasso.get().load(house.getPicture()).fit().centerCrop().into(holder.picture);
 
                                 holder.title.setText("Title: " + '\n' + document.getString("title"));
@@ -104,7 +104,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
                 House houseIntent = new House();
 
-                //Loop to iterate over
+
                 for (House house : houseArrayList) {
                     if (house.getHouseId().equals(houseApplicationArrayList.get(position).getHouseId())) {
                         houseIntent = house;
@@ -132,7 +132,7 @@ public class SelectedHousesRecyclerViewAdapter extends RecyclerView.Adapter<Sele
 
     public void deleteFromDB(int position) {
 
-        // delete query
+
         db.collection("applications").document(houseApplicationArrayList.get(position).getApplicationId()).delete();
 
 

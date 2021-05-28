@@ -1,10 +1,7 @@
 package cat.itb.studenthousing.fragments;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,23 +30,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.Random;
 
-import cat.itb.studenthousing.MainActivity;
 import cat.itb.studenthousing.R;
 import cat.itb.studenthousing.adapters.AvailableHousesRecyclerViewAdapter;
-import cat.itb.studenthousing.consoleMessages;
 import cat.itb.studenthousing.models.House;
 import cat.itb.studenthousing.models.HouseApplication;
 import cat.itb.studenthousing.views.MapsActivity;
 
-import static cat.itb.studenthousing.MainActivity.firebaseAuth;
 import static cat.itb.studenthousing.MainActivity.availableHouseArrayList;
+import static cat.itb.studenthousing.MainActivity.firebaseAuth;
 import static cat.itb.studenthousing.MainActivity.housesIdWithApplicationList;
-import static cat.itb.studenthousing.fragments.SelectedHouses.selectedHousesRecyclerViewAdapter;
 
 public class LandingPage extends Fragment implements View.OnClickListener {
 
@@ -71,9 +62,6 @@ public class LandingPage extends Fragment implements View.OnClickListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        consoleMessages.printMessage("creating on landing page!");
-
-
     }
 
 
@@ -82,7 +70,6 @@ public class LandingPage extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.landing_page, container, false);
 
-        consoleMessages.printMessage("creating view on landing page!");
         availableHouseArrayList.removeAll(availableHouseArrayList);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -160,7 +147,6 @@ public class LandingPage extends Fragment implements View.OnClickListener {
 
                 Random random = new Random();
                 HouseApplication houseApplication = new HouseApplication((user.getUid() + "_" + random.nextInt(999)), user.getDisplayName(), user.getEmail(), availableHouseArrayList.get(position).getHouseId(), user.getUid(), "Waiting for selection");
-                consoleMessages.printMessage(houseApplication.toString());
                 db.collection("applications").document(houseApplication.getApplicationId()).set(houseApplication);
                 availableHouseArrayList.remove(availableHouseArrayList.get(position));
 
@@ -201,7 +187,7 @@ public class LandingPage extends Fragment implements View.OnClickListener {
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                         for (DocumentSnapshot querySnapshot : task.getResult()) {
 
-                                            //If the current house is not on our list will be added to the array to be  displayed on the recycler
+
                                             if (!housesIdWithApplicationList.contains(querySnapshot.getString("houseId"))) {
                                                 House house = new House(
 
@@ -312,7 +298,6 @@ public class LandingPage extends Fragment implements View.OnClickListener {
             case R.id.searchButton:
                 String text = searchButton.getText().toString();
                 if (text.equals("Search")) {
-                    Toast.makeText(getContext(), "search button pulsado", Toast.LENGTH_LONG).show();
 
 
                     minValue = minPrice.getText().toString();

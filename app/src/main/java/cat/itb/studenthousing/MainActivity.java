@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
-    //this var will store all the houses that the user has already applied for
+
     public static List<String> housesIdWithApplicationList;
     public static ArrayList<House> availableHouseArrayList;
 
@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //asi validamos cuando iniciamos sesion que se quede logeado el user
     @Override
     public void onResume() {
         super.onResume();
@@ -148,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     deleteTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            //Toast.makeText(MainActivity.this, "There was an error deleting the account" + deleteTask.getResult(), Toast.LENGTH_LONG).show();
+
                             logOut(view);
 
 
@@ -184,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         alert.setTitle("Change Password");
         alert.setMessage("Introduce a new password");
 
-        // Set an EditText view to get user input
+
         final EditText input = new EditText(this);
         alert.setView(input);
 
@@ -215,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         alert.setTitle("Change Email");
         alert.setMessage("Introduce a new email");
 
-        // Set an EditText view to get user input
+
         final EditText input = new EditText(this);
         alert.setView(input);
 

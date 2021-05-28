@@ -5,7 +5,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64342727987ddf4cea7e14d3ea131b5b/jetified-firebase-inappmessaging-display-19.1.5/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64342727987ddf4cea7e14d3ea131b5b/jetified-firebase-inappmessaging-display-19.1.5/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-inappmessaging-display/19.1.5/99bf8ef7a7e0c09679ccbd8462e5670e3f3524e3/firebase-inappmessaging-display-19.1.5-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>
